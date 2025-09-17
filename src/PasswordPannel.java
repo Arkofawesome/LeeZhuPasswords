@@ -12,6 +12,7 @@ public class PasswordPannel extends JPanel {
     private JTextField messageField = new JTextField(25);
     private String password;
     private Color passwordStrengthColor;
+    private int colorLength;
 
     PasswordPannel() {
         this.setLayout(null);
@@ -19,6 +20,7 @@ public class PasswordPannel extends JPanel {
         password = "";
         start();
         passwordStrengthColor = Color.RED;
+        colorLength = (SCREEN_WIDTH - 60) / 4;
     }
 
 
@@ -28,7 +30,12 @@ public class PasswordPannel extends JPanel {
     }
     public void draw(Graphics g){
         g.setColor(passwordStrengthColor);
-        g.fillRect(30, 250, SCREEN_WIDTH - 60, 20);
+        g.fillRect(30, 250, colorLength, 20);
+        g.setColor(Color.BLACK);
+        g.drawRect(30, 250, SCREEN_WIDTH - 60, 20);
+        g.drawLine((SCREEN_WIDTH - 60) / 4 + 30, 250, (SCREEN_WIDTH - 60) / 4 + 30, 270);
+        g.drawLine((SCREEN_WIDTH - 60) / 4 * 2 + 30, 250, (SCREEN_WIDTH - 60) / 4 * 2 + 30, 270);
+        g.drawLine((SCREEN_WIDTH - 60) / 4 * 3 + 30, 250, (SCREEN_WIDTH - 60) / 4 * 3 + 30, 270);
     }
     public void start() {
         msg_Box();
@@ -56,15 +63,19 @@ public class PasswordPannel extends JPanel {
     public void testPassword() {
         if (password.length() >= 17) {
             passwordStrengthColor = Color.green;
+            colorLength = (SCREEN_WIDTH - 60);
         }
         else if (password.length() >= 12) {
             passwordStrengthColor = Color.YELLOW;
+            colorLength = (SCREEN_WIDTH - 60) / 4 * 3;
         }
         else if (password.length() >= 8) {
             passwordStrengthColor = Color.ORANGE;
+            colorLength = (SCREEN_WIDTH - 60) / 4 * 2;
         }
         else {
             passwordStrengthColor = Color.RED;
+            colorLength = (SCREEN_WIDTH - 60) / 4;
         }
     }
 
