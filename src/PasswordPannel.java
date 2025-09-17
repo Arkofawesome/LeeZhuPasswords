@@ -1,8 +1,11 @@
+/**
+ * @author Jackson Lee
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.geom.RoundRectangle2D;
-import java.util.ArrayList;
+import java.awt.Font;
 
 public class PasswordPannel extends JPanel {
     private final int SCREEN_WIDTH = 400;
@@ -13,6 +16,8 @@ public class PasswordPannel extends JPanel {
     private String password;
     private Color passwordStrengthColor;
     private int colorLength;
+    private int passwordStrength;
+    private JLabel strengthExplanation;
 
     PasswordPannel() {
         this.setLayout(null);
@@ -21,6 +26,7 @@ public class PasswordPannel extends JPanel {
         start();
         passwordStrengthColor = Color.RED;
         colorLength = (SCREEN_WIDTH - 60) / 4;
+        passwordStrength = 0;
     }
 
 
@@ -39,7 +45,7 @@ public class PasswordPannel extends JPanel {
     }
     public void start() {
         msg_Box();
-
+        passwordStrengthExplanation();
     }
 
     public void msg_Box() {
@@ -64,19 +70,54 @@ public class PasswordPannel extends JPanel {
         if (password.length() >= 17) {
             passwordStrengthColor = Color.green;
             colorLength = (SCREEN_WIDTH - 60);
+            passwordStrength = 3;
+            testExplanation();
         }
         else if (password.length() >= 12) {
             passwordStrengthColor = Color.YELLOW;
             colorLength = (SCREEN_WIDTH - 60) / 4 * 3;
+            passwordStrength = 2;
+            testExplanation();
         }
         else if (password.length() >= 8) {
             passwordStrengthColor = Color.ORANGE;
             colorLength = (SCREEN_WIDTH - 60) / 4 * 2;
+            passwordStrength = 1;
+            testExplanation();
         }
         else {
             passwordStrengthColor = Color.RED;
             colorLength = (SCREEN_WIDTH - 60) / 4;
+            passwordStrength = 0;
+            testExplanation();
         }
+    }
+
+    public void passwordStrengthExplanation() {
+        Font ExplanationFont = new Font("Calibri", Font.BOLD, 38);
+
+        strengthExplanation = new JLabel("" + passwordStrength);
+        strengthExplanation.setFont(ExplanationFont);
+        strengthExplanation.setBounds(SCREEN_WIDTH / 2 - 10,SCREEN_HEIGHT / 2 + 10,SCREEN_WIDTH, 50);
+        strengthExplanation.setVisible(true);
+        this.add(strengthExplanation);
+
+        
+    }
+    public void testExplanation() {
+        if (passwordStrength > 0) {
+            strengthExplanation.setText("+" + passwordStrength);
+            strengthExplanation.setBounds(SCREEN_WIDTH / 2 - 15,SCREEN_HEIGHT / 2 + 10,SCREEN_WIDTH, 50);
+        }
+        else if (passwordStrength < 0) {
+            strengthExplanation.setText("-" + passwordStrength);
+            strengthExplanation.setBounds(SCREEN_WIDTH / 2 - 15,SCREEN_HEIGHT / 2 + 10,SCREEN_WIDTH, 50);
+        }
+        else {
+            strengthExplanation.setText("" + passwordStrength);
+            strengthExplanation.setBounds(SCREEN_WIDTH / 2 - 10,SCREEN_HEIGHT / 2 + 10,SCREEN_WIDTH, 50);
+        }
+
     }
 
 }
