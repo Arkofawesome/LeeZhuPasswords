@@ -49,7 +49,37 @@ public class LeeZhuPasswords implements LeeZhuIntFace{
 
     //6 appearances
     public int appear(String password){
-        int ret=0;
-        ArrayList had = new ArrayList<char>(password.length());
+        int ret=0, counter=0;
+        Character comparer;
+        ArrayList<Character> had = new ArrayList();
+
+        for(int i =0; i<password.length(); i++){//putting all letters into the list
+            had.add(password.charAt(i));
+        }
+
+        //this is the actual checker
+        while(had.size()>0){
+            counter=0;
+            comparer = had.get(0);//gets the first letter and will compare it with the rest of the letters
+            for(int i =had.size(); i>0; i--){//going from reverse so that you wont skip anything
+                if(comparer == had.get(i)){
+                    counter++;
+                    had.remove(i);
+                }
+            }
+            if(counter>2)
+                ret-=counter;
+        }
+        return ret;
+    }
+
+    //7
+    public int recur(String password){//start from end and check the previous character to see if its the same
+                                    //if it is the same then it will subtract from score
+        int ret = 0;
+        for(int i =password.length(); i>0; i--){
+            
+        }
+
     }
 }
