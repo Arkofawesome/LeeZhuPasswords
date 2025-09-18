@@ -15,6 +15,62 @@ public class LeeZhuPasswords implements LeeZhuIntFace{
 
     }
 
+    //1
+    public boolean minRequirements() throws PasswordFormatException {
+        if (password.length() >= 8 && password.length() <= 20) {
+            boolean Upper;
+            boolean lower;
+            boolean letter;
+            boolean numerical;
+            boolean symbol;
+
+            for (int i = 0; i < password.length(); i++) {
+                if (Character.isUpperCase(password.charAt(i))) {
+                    Upper = true;
+                }
+                else if (Character.isUpperCase(password.charAt(i))) {
+                    lower = true;
+                }
+                else if (Character.isUpperCase(password.charAt(i))) {
+                    Upper = true;
+                }
+                else if (Character.isUpperCase(password.charAt(i))) {
+                    Upper = true;
+                }
+                else if (Character.isUpperCase(password.charAt(i))) {
+                    Upper = true;
+                }
+            }
+        }
+    }
+
+    public boolean minRequirements() throws PasswordFormatException {
+        if (password.length() >= 8 && password.length() <= 20) {
+            boolean Upper;
+            boolean lower;
+            boolean letter;
+            boolean numerical;
+            boolean symbol;
+
+            for (int i = 0; i < password.length(); i++) {
+                if (Character.isUpperCase(password.charAt(i))) {
+                    Upper = true;
+                }
+                else if (Character.isUpperCase(password.charAt(i))) {
+                    lower = true;
+                }
+                else if (Character.isUpperCase(password.charAt(i))) {
+                    Upper = true;
+                }
+                else if (Character.isUpperCase(password.charAt(i))) {
+                    Upper = true;
+                }
+                else if (Character.isUpperCase(password.charAt(i))) {
+                    Upper = true;
+                }
+            }
+        }
+    }
 
     //4 increase based on cap or lower cases
     public int upperLower(String password){
