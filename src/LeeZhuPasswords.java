@@ -51,7 +51,7 @@ public class LeeZhuPasswords implements LeeZhuIntFace {
             if (upper && lower && letter && numerical && symbol) {
                 return true;
             }
-            System.out.println(upper + "_" + lower + "_" + letter + "_" + numerical + "_" + symbol);
+//            System.out.println(upper + "_" + lower + "_" + letter + "_" + numerical + "_" + symbol);
         }
         return false;
     }
