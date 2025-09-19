@@ -20,7 +20,7 @@ public class LeeZhuPasswords implements LeeZhuIntFace {
             throw new PasswordFormatException("Does not meet min Requirements");
         }
         int strength;
-        strength = passLength();
+        strength = passLength() + conseqIndexes();
         return strength;
     }
 
@@ -67,6 +67,30 @@ public class LeeZhuPasswords implements LeeZhuIntFace {
         else {
             return 1;
         }
+    }
+
+    //3
+    public int conseqIndexes() {
+        int count = 0;
+        for (int i = 1; i < password.length(); i++) {
+            // Thinking of brute forcing by finding every possible combo
+            if (Character.isLetter(password.charAt(i - 1))) {
+                if (Character.isDigit(password.charAt(i)) || !Character.isLetterOrDigit(password.charAt(i))) {
+                    count++;
+                }
+            }
+            else if (Character.isDigit(password.charAt(i - 1))) {
+                if (Character.isLetter(password.charAt(i)) || !Character.isLetterOrDigit(password.charAt(i))) {
+                    count++;
+                }
+            }
+            else if (!Character.isLetterOrDigit(password.charAt(i - 1))) {
+                if (Character.isLetterOrDigit(password.charAt(i))) {
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 
 
