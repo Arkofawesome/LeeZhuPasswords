@@ -18,6 +18,7 @@ public class PasswordPannel extends JPanel {
     private int colorLength;
     private int passwordStrength;
     private JLabel strengthExplanation;
+    private LeeZhuPasswords passwordTester;
 
     PasswordPannel() {
         this.setLayout(null);
@@ -67,31 +68,59 @@ public class PasswordPannel extends JPanel {
     }
 
     public void testPassword() {
-        if (password.length() >= 17) {
-            passwordStrengthColor = Color.green;
-            colorLength = (SCREEN_WIDTH - 60);
-            passwordStrength = 3;
-            testExplanation();
-        }
-        else if (password.length() >= 12) {
-            passwordStrengthColor = Color.YELLOW;
-            colorLength = (SCREEN_WIDTH - 60) / 4 * 3;
-            passwordStrength = 2;
-            testExplanation();
-        }
-        else if (password.length() >= 8) {
-            passwordStrengthColor = Color.ORANGE;
-            colorLength = (SCREEN_WIDTH - 60) / 4 * 2;
-            passwordStrength = 1;
-            testExplanation();
-        }
-        else {
-            passwordStrengthColor = Color.RED;
-            colorLength = (SCREEN_WIDTH - 60) / 4;
-            passwordStrength = 0;
-            testExplanation();
+        passwordTester.setPassword(password);
+        try {
+            passwordStrength = passwordTester.determineStrength();
+            if (passwordStrength > 5) {
+                passwordStrengthColor = Color.green;
+                colorLength = (SCREEN_WIDTH - 60);
+                testExplanation();
+            } else if (passwordStrength > 3) {
+                passwordStrengthColor = Color.YELLOW;
+                colorLength = (SCREEN_WIDTH - 60) / 4 * 3;
+                testExplanation();
+            } else if (passwordStrength > 1) {
+                passwordStrengthColor = Color.ORANGE;
+                colorLength = (SCREEN_WIDTH - 60) / 4 * 2;
+                passwordStrength = 1;
+                testExplanation();
+            } else {
+                passwordStrengthColor = Color.RED;
+                colorLength = (SCREEN_WIDTH - 60) / 4;
+                testExplanation();
+            }
+        } catch (PasswordFormatException e) {
+            error();
         }
     }
+
+
+//    public void testPassword() {
+//        if (password.length() >= 17) {
+//            passwordStrengthColor = Color.green;
+//            colorLength = (SCREEN_WIDTH - 60);
+//            passwordStrength = 3;
+//            testExplanation();
+//        }
+//        else if (password.length() >= 12) {
+//            passwordStrengthColor = Color.YELLOW;
+//            colorLength = (SCREEN_WIDTH - 60) / 4 * 3;
+//            passwordStrength = 2;
+//            testExplanation();
+//        }
+//        else if (password.length() >= 8) {
+//            passwordStrengthColor = Color.ORANGE;
+//            colorLength = (SCREEN_WIDTH - 60) / 4 * 2;
+//            passwordStrength = 1;
+//            testExplanation();
+//        }
+//        else {
+//            passwordStrengthColor = Color.RED;
+//            colorLength = (SCREEN_WIDTH - 60) / 4;
+//            passwordStrength = 0;
+//            testExplanation();
+//        }
+//    }
 
     public void passwordStrengthExplanation() {
         Font ExplanationFont = new Font("Calibri", Font.BOLD, 38);
