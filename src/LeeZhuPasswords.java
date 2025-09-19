@@ -20,7 +20,7 @@ public class LeeZhuPasswords implements LeeZhuIntFace {
             throw new PasswordFormatException("Does not meet min Requirements");
         }
         int strength;
-        strength = passLength() + conseqIndexes();
+        strength = passLength() + conseqIndexes() + upperLower() + consecutive();
         return strength;
     }
 
@@ -95,69 +95,90 @@ public class LeeZhuPasswords implements LeeZhuIntFace {
 
 
     //4 increase based on cap or lower cases
-//    public int upperLower(String password){
-//        int up=0, low=0;
-//        for(int i =0; i<password.length();i++){
-//            if(new Character(password.charAt(i)).isUpperCase(0)){
-//                up++;
-//            }
-//            else if(new Character(password.charAt(i)).isLowerCase(0)){
-//                low++;
-//            }
-//        }
-//
-//        if(up>low){//if both zero it wont matter which I return
-//            return up;
-//        }
-//        return low;
-//    }
-//
-//    //5 if consecutive lose strength
-//    public int consecutive(String password){
-//        int ret=0;
-//        Character last=' ', current;
-//        for(int i =0; i<password.length(); i++){//use charValue to get value and will compare to last one then swap what the compare is
-//            current = password.charAt(i);
-//            if(last.charValue() == current.charValue()+1||last.charValue() == current.charValue()-1){
-//                ret--;
-//            }
-//        }
-//        return ret;
-//    }
-//
-//    //6 appearances
-//    public int appear(String password){
-//        int ret=0, counter=0;
-//        Character comparer;
-//        ArrayList<Character> had = new ArrayList();
-//
-//        for(int i =0; i<password.length(); i++){//putting all letters into the list
-//            had.add(password.charAt(i));
-//        }
-//
-//        //this is the actual checker
-//        while(had.size()>0){
-//            counter=0;
-//            comparer = had.get(0);//gets the first letter and will compare it with the rest of the letters
-//            for(int i =had.size(); i>0; i--){//going from reverse so that you wont skip anything
-//                if(comparer == had.get(i)){
-//                    counter++;
-//                    had.remove(i);
-//                }
-//            }
-//            if(counter>2)
-//                ret-=counter;
-//        }
-//        return ret;
-//    }
-//
-//    //7
-//    public int recur(String password){//start from end and check the previous character to see if its the same
-//                                    //if it is the same then it will subtract from score
-//        int ret = 0;
-//        for(int i =password.length(); i>0; i--){
-//
-//        }
-//
-//    }
+   public int upperLower(){
+       int up=0, low=0;
+       for(int i =0; i<password.length();i++){
+           if(Character.isUpperCase(password.charAt(i))){
+               up++;
+           }
+           else if(Character.isLowerCase(password.charAt(i))){
+               low++;
+           }
+       }
+    //    System.out.println("the uppercase power is"+up);
+    //    System.out.println("the lowercase power is"+low);
+       if(up>low){//if both zero it wont matter which I return
+            //System.out.println("sent low");
+            return low;
+       }
+       return up;
+   }
+
+   //5 if consecutive lose strength
+   public int consecutive(){
+       int ret=0;
+       Character last=' ', current;
+       for(int i =0; i<password.length(); i++){//use charValue to get value and will compare to last one then swap what the compare is
+           current = password.charAt(i);
+           if(current.charValue() == last.charValue()+1||current.charValue() == last.charValue()-1){
+               ret--;
+            //    System.out.println("current: "+current);
+            //    System.out.println("last: "+last);
+           }
+            last = current;
+       }
+       System.out.println("consecutive strngth: "+ret);
+       return ret;
+   }
+
+   //6 appearances
+   public int appear(){
+       int ret=0, counter=0;
+       Character comparer;
+       ArrayList<Character> had = new ArrayList();
+
+       for(int i =0; i<password.length(); i++){//putting all letters into the list
+           had.add(password.charAt(i));
+       }
+
+       //this is the actual checker
+       while(had.size()>0){
+           counter=0;
+           comparer = had.get(0);//gets the first letter and will compare it with the rest of the letters
+           for(int i =had.size(); i>0; i--){//going from reverse so that you wont skip anything
+               if(comparer == had.get(i)){
+                   counter++;
+                   had.remove(i);
+               }
+           }
+           if(counter>2)
+               ret-=counter;
+       }
+       return ret;
+   }
+
+   //7
+   public int recur(){//start from end and check the previous character to see if its the same
+                                   //if it is the same then it will subtract from score
+       int ret = 0, counter=-2;
+       char prev = password.charAt(password.length()-1);
+       for(int i =password.length()-2; i>=0; i--){
+            if(prev == password.charAt(i)){
+                counter++;
+            }
+            else{
+                if(counter>0){
+                    ret-=counter-2;
+                }
+                if(counter>-2){
+                    counter =-2;
+                }
+                prev = password.charAt(i);
+
+            }
+       }
+
+
+       return ret;
+   }
 }
