@@ -45,6 +45,7 @@ public class PasswordPannel extends JPanel {
         g.drawLine((SCREEN_WIDTH - 60) / 4 * 3 + 30, 250, (SCREEN_WIDTH - 60) / 4 * 3 + 30, 270);
     }
     public void start() {
+        passwordTester = new LeeZhuPasswords();
         msg_Box();
         passwordStrengthExplanation();
     }
@@ -59,6 +60,7 @@ public class PasswordPannel extends JPanel {
         messageField.addKeyListener(new KeyAdapter() {
                 @Override
                 public void keyReleased(KeyEvent e) {
+                    strengthExplanation.setVisible(false);
                     password = messageField.getText();
                     System.out.println(password);
                     testPassword();
@@ -70,6 +72,7 @@ public class PasswordPannel extends JPanel {
     public void testPassword() {
         passwordTester.setPassword(password);
         try {
+            System.out.println(passwordStrength);
             passwordStrength = passwordTester.determineStrength();
             if (passwordStrength > 5) {
                 passwordStrengthColor = Color.green;
@@ -95,6 +98,19 @@ public class PasswordPannel extends JPanel {
     }
 
 
+    public void error() {
+        passwordStrengthColor = Color.RED;
+        colorLength = (SCREEN_WIDTH - 60) / 4;
+        passwordStrength = 0;
+
+        Font ExplanationFont = new Font("Calibri", Font.BOLD, 20);
+
+        strengthExplanation = new JLabel("Error, please look at our min requirement and try again!");
+        strengthExplanation.setFont(ExplanationFont);
+        strengthExplanation.setBounds(0,SCREEN_HEIGHT / 2 + 10,SCREEN_WIDTH, 50);
+        strengthExplanation.setVisible(true);
+        this.add(strengthExplanation);
+    }
 //    public void testPassword() {
 //        if (password.length() >= 17) {
 //            passwordStrengthColor = Color.green;
@@ -134,6 +150,7 @@ public class PasswordPannel extends JPanel {
         
     }
     public void testExplanation() {
+        strengthExplanation.setVisible(true);
         if (passwordStrength > 0) {
             strengthExplanation.setText("+" + passwordStrength);
             strengthExplanation.setBounds(SCREEN_WIDTH / 2 - 15,SCREEN_HEIGHT / 2 + 10,SCREEN_WIDTH, 50);
