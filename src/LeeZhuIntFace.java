@@ -1,5 +1,5 @@
 public interface LeeZhuIntFace {
 
-    int determineStrength() throws passwordFormatException;
+    int determineStrength();
 
 }
