@@ -127,7 +127,7 @@ public class LeeZhuPasswords implements LeeZhuIntFace {
            }
             last = current;
        }
-       System.out.println("consecutive strngth: "+ret);
+    //    System.out.println("consecutive strngth: "+ret);
        return ret;
    }
 
@@ -157,7 +157,7 @@ public class LeeZhuPasswords implements LeeZhuIntFace {
            }
         //    System.out.println("Counter for "+had.get(0)+"is "+counter);
            if(counter>=2)
-               ret-=counter;
+               ret-=counter-1;
             had.remove(0);
        }
        
