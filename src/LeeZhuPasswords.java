@@ -20,7 +20,7 @@ public class LeeZhuPasswords implements LeeZhuIntFace {
             throw new PasswordFormatException("Does not meet min Requirements");
         }
         int strength;
-        strength = passLength() + conseqIndexes() + upperLower() + consecutive() + appear() + recur();
+        strength = passLength() /*+ conseqIndexes() + upperLower() + consecutive() + appear() + recur()*/;
         return strength;
     }
 

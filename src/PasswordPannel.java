@@ -85,13 +85,14 @@ public class PasswordPannel extends JPanel {
             } else if (passwordStrength > 1) {
                 passwordStrengthColor = Color.ORANGE;
                 colorLength = (SCREEN_WIDTH - 60) / 4 * 2;
-                passwordStrength = 1;
+//                passwordStrength = 1;
                 testExplanation();
             } else {
                 passwordStrengthColor = Color.RED;
                 colorLength = (SCREEN_WIDTH - 60) / 4;
                 testExplanation();
             }
+            System.out.println(passwordStrength);
         } catch (PasswordFormatException e) {
             error();
         }
