@@ -20,7 +20,7 @@ public class LeeZhuPasswords implements LeeZhuIntFace {
             throw new PasswordFormatException("Does not meet min Requirements");
         }
         int strength;
-        strength = passLength() /*+ conseqIndexes() + upperLower() + consecutive() + appear() + recur()*/;
+        strength = passLength() + conseqIndexes() + upperLower() + consecutive() + appear() + recur();
         return strength;
     }
 
@@ -90,6 +90,7 @@ public class LeeZhuPasswords implements LeeZhuIntFace {
                 }
             }
         }
+        System.out.print("the return for 3 is: ");
         return count;
     }
 
@@ -107,6 +108,7 @@ public class LeeZhuPasswords implements LeeZhuIntFace {
        }
     //    System.out.println("the uppercase power is"+up);
     //    System.out.println("the lowercase power is"+low);
+    System.out.print("the return for 4 is: ");
        if(up>low){//if both zero it wont matter which I return
             //System.out.println("sent low");
             return low;
@@ -128,6 +130,7 @@ public class LeeZhuPasswords implements LeeZhuIntFace {
             last = current;
        }
     //    System.out.println("consecutive strngth: "+ret);
+    System.out.print("the return for 5 is: ");
        return ret;
    }
 
@@ -161,8 +164,7 @@ public class LeeZhuPasswords implements LeeZhuIntFace {
             had.remove(0);
        }
        
-    //    System.out.println(ret);
-    //    System.out.println("This is the end");
+        System.out.print("the return for 6 is: ");
        return ret;
    }
 
@@ -194,7 +196,7 @@ public class LeeZhuPasswords implements LeeZhuIntFace {
             }
        }
 
-    //    System.out.println("the return is: ");
+       System.out.print("the return for 7 is: ");
        return ret;
    }
 }
