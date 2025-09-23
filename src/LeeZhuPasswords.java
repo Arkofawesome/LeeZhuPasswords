@@ -20,7 +20,7 @@ public class LeeZhuPasswords implements LeeZhuIntFace {
             throw new PasswordFormatException("Does not meet min Requirements");
         }
         int strength;
-        strength = passLength() + conseqIndexes() + upperLower() + consecutive();
+        strength = passLength() + conseqIndexes() + upperLower() + consecutive() + appear() + recur();
         return strength;
     }
 
@@ -140,45 +140,61 @@ public class LeeZhuPasswords implements LeeZhuIntFace {
        for(int i =0; i<password.length(); i++){//putting all letters into the list
            had.add(password.charAt(i));
        }
-
+    //    System.out.println("The letters were put into its place correctly");
+       
        //this is the actual checker
        while(had.size()>0){
+            // System.out.println("letter on now is "+had.get(0));
            counter=0;
            comparer = had.get(0);//gets the first letter and will compare it with the rest of the letters
-           for(int i =had.size(); i>0; i--){//going from reverse so that you wont skip anything
+           for(int i =had.size()-1; i>0; i--){//going from reverse so that you wont skip anything
                if(comparer == had.get(i)){
                    counter++;
+                //    System.out.println(had.get(i));
                    had.remove(i);
-               }
+                }
+                    
            }
-           if(counter>2)
+        //    System.out.println("Counter for "+had.get(0)+"is "+counter);
+           if(counter>=2)
                ret-=counter;
+            had.remove(0);
        }
+       
+    //    System.out.println(ret);
+    //    System.out.println("This is the end");
        return ret;
    }
 
    //7
    public int recur(){//start from end and check the previous character to see if its the same
                                    //if it is the same then it will subtract from score
-       int ret = 0, counter=-2;
+       int ret = 0, counter=0;
        char prev = password.charAt(password.length()-1);
-       for(int i =password.length()-2; i>=0; i--){
+       for(int i =password.length()-1; i>=0; i--){
+            // System.out.println("prev is "+prev);
+            // System.out.println("Current char is: "+password.charAt(i));
             if(prev == password.charAt(i)){
                 counter++;
-            }
-            else{
-                if(counter>0){
+                // System.out.println("adding to counter gives "+counter);
+                if(counter>2&&i == 0){//to subtract from ret when it's at the very end of its run
+                    System.out.println("its the last one");
                     ret-=counter-2;
                 }
-                if(counter>-2){
-                    counter =-2;
+            }
+            else{
+                // System.out.println("The amount of the previous is: "+counter);
+                if(counter>2){//to subtract from ret
+                    ret-=counter-2;
                 }
+                counter =1;//becuase it should count itself
                 prev = password.charAt(i);
+                
 
             }
        }
 
-
+    //    System.out.println("the return is: ");
        return ret;
    }
 }

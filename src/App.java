@@ -17,7 +17,11 @@ public class App {
 //        System.out.println(pass.determineStrength());
 //        new PasswordApp(new PasswordPannel());
 //        LeeZhuPasswords pass5 = new LeeZhuPasswords("zyx78");//to test 5
-        new PasswordApp(new PasswordPannel());
+        new PasswordApp(new PasswordPannel());//make sure this is not commented out
 //        System.out.println(pass5.consecutive());
+        // LeeZhuPasswords pass6 = new LeeZhuPasswords("axaxaxa");
+        // System.out.println(pass6.appear());
+        // LeeZhuPasswords pass7 = new LeeZhuPasswords("xaaaaa");
+        // System.out.println(pass7.recur());
     }
 }
