@@ -1,4 +1,4 @@
-public class App {
+public class LeeZhuApp {
     public static void main(String[] args) throws Exception {
 //        LeeZhuPasswords pass = new LeeZhuPasswords("Abc123&!!!!!!!!!!!");
 //        System.out.println(pass.determineStrength());
@@ -17,7 +17,7 @@ public class App {
 //        System.out.println(pass.determineStrength());
 //        new PasswordApp(new PasswordPannel());
 //        LeeZhuPasswords pass5 = new LeeZhuPasswords("zyx78");//to test 5
-        new PasswordApp(new PasswordPannel());//make sure this is not commented out
+        new LeeZhuPasswordApp(new LeeZhuPasswordPannel());//make sure this is not commented out
 //        System.out.println(pass5.consecutive());
         // LeeZhuPasswords pass6 = new LeeZhuPasswords("axaxaxa");
         // System.out.println(pass6.appear());

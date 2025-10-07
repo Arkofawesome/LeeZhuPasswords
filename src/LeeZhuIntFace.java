@@ -1,8 +1,9 @@
 public interface LeeZhuIntFace {
 
     int MIN_LENGTH = 8;
+    int MAX_LENGTH = 20;
 
-    int determineStrength();
+    int determineStrength() throws LeeZhuPasswordFormatException;
 
     boolean minRequirements();
 

@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.Font;
 
-public class PasswordPannel extends JPanel {
+public class LeeZhuPasswordPannel extends JPanel {
     private final int SCREEN_WIDTH = 400;
     private final int SCREEN_HEIGHT = 400;
     private final int MSG_BOX_WIDTH = 200;
@@ -20,7 +20,7 @@ public class PasswordPannel extends JPanel {
     private JLabel strengthExplanation;
     private LeeZhuPasswords passwordTester;
 
-    PasswordPannel() {
+    LeeZhuPasswordPannel() {
         this.setLayout(null);
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         password = "";
@@ -93,7 +93,7 @@ public class PasswordPannel extends JPanel {
                 testExplanation();
             }
             System.out.println(passwordStrength);
-        } catch (PasswordFormatException e) {
+        } catch (LeeZhuPasswordFormatException e) {
             error();
         }
     }

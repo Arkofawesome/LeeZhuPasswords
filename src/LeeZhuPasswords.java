@@ -15,9 +15,9 @@ public class LeeZhuPasswords implements LeeZhuIntFace {
         this.password = password;
     }
 
-    public int determineStrength() {
+    public int determineStrength() throws LeeZhuPasswordFormatException {
         if (!minRequirements()) {
-            throw new PasswordFormatException("Does not meet min Requirements");
+            throw new LeeZhuPasswordFormatException("Does not meet min Requirements");
         }
         int strength;
         strength = passLength() + conseqIndexes() + upperLower() + consecutive() + appear() + recur();
@@ -26,7 +26,7 @@ public class LeeZhuPasswords implements LeeZhuIntFace {
 
     //1
     public boolean minRequirements() {
-        if (password.length() >= 8 && password.length() <= 20) {
+        if (password.length() >= MIN_LENGTH && password.length() <= MAX_LENGTH) {
             boolean upper = false;
             boolean lower = false;
             boolean letter = false;
