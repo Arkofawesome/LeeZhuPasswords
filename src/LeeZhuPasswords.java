@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+
 public class LeeZhuPasswords implements LeeZhuIntFace {
     private String password;
 
@@ -90,7 +91,7 @@ public class LeeZhuPasswords implements LeeZhuIntFace {
                 }
             }
         }
-        System.out.print("the return for 3 is: ");
+        // System.out.print("the return for 3 is: ");
         return count;
     }
 
@@ -108,7 +109,7 @@ public class LeeZhuPasswords implements LeeZhuIntFace {
        }
     //    System.out.println("the uppercase power is"+up);
     //    System.out.println("the lowercase power is"+low);
-    System.out.print("the return for 4 is: ");
+    // System.out.print("the return for 4 is: ");
        if(up>low){//if both zero it wont matter which I return
             //System.out.println("sent low");
             return low;
@@ -117,22 +118,28 @@ public class LeeZhuPasswords implements LeeZhuIntFace {
    }
 
    //5 if consecutive lose strength
+   //only if they are numbers or letters
    public int consecutive(){
        int ret=0;
-       Character last=' ', current;
-       for(int i =0; i<password.length(); i++){//use charValue to get value and will compare to last one then swap what the compare is
+       Character last=password.charAt(0), current;
+       
+       for(int i =1; i<password.length(); i++){//use charValue to get value and will compare to last one then swap what the compare is
            current = password.charAt(i);
-           if(current.charValue() == last.charValue()+1||current.charValue() == last.charValue()-1){
-               ret--;
+           if(last.isLetterOrDigit(last)&&current.isLetterOrDigit(current)){//using and bc they have to be either a number or letter
+                if(current.charValue() == last.charValue()+1||current.charValue() == last.charValue()-1){
+                    ret--;
+                }
             //    System.out.println("current: "+current);
             //    System.out.println("last: "+last);
            }
             last = current;
        }
     //    System.out.println("consecutive strngth: "+ret);
-    System.out.print("the return for 5 is: ");
+    // System.out.print("the return for 5 is: ");
        return ret;
    }
+
+
 
    //6 appearances
    public int appear(){
@@ -164,7 +171,7 @@ public class LeeZhuPasswords implements LeeZhuIntFace {
             had.remove(0);
        }
        
-        System.out.print("the return for 6 is: ");
+        // System.out.print("the return for 6 is: ");
        return ret;
    }
 
@@ -196,7 +203,7 @@ public class LeeZhuPasswords implements LeeZhuIntFace {
             }
        }
 
-       System.out.print("the return for 7 is: ");
+    //    System.out.print("the return for 7 is: ");
        return ret;
    }
 }
