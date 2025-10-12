@@ -110,7 +110,7 @@ public class LeeZhuPasswords implements LeeZhuIntFace {
     //    System.out.println("the uppercase power is"+up);
     //    System.out.println("the lowercase power is"+low);
     // System.out.print("the return for 4 is: ");
-       if(up>low){//if both zero it wont matter which I return
+       if(up>low){//if both same it wont matter which I return
             //System.out.println("sent low");
             return low;
        }
@@ -125,7 +125,7 @@ public class LeeZhuPasswords implements LeeZhuIntFace {
        
        for(int i =1; i<password.length(); i++){//use charValue to get value and will compare to last one then swap what the compare is
            current = password.charAt(i);
-           if(last.isLetterOrDigit(last)&&current.isLetterOrDigit(current)){//using and bc they have to be either a number or letter
+           if(Character.isLetterOrDigit(last)&&Character.isLetterOrDigit(current)){//using and bc they have to be either a number or letter
                 if(current.charValue() == last.charValue()+1||current.charValue() == last.charValue()-1){
                     ret--;
                 }
